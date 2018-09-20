@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <video onloadedmetadata="setDuration(event)" controls id="vid">
+            <source src=http://media.w3.org/2010/05/bunny/movie.mp4	 type=video/mp4>
+    </video>
+    <div>
+            <input onchange="moveTime(event)" type="range" min="0" value="0" max="" id="zaza" />
+    </div>
+    
+    <script>
+        var video = $('#vid');
+        var slider = $('#zaza');
+
+
+        function setDuration(e){
+            var dur = e.target.duration;
+            slider.attr('max', dur);
+            slider.css('width', video.css('width'));
+        }
+
+        function moveTime(e) {
+            video[0].currentTime = e.target.value;
+        }
+
+    </script>
+</body>
+</html>

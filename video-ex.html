@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+</head>
+<body>
+    Go to https://www.w3.org/2010/05/video/mediaevents.html
+        <video controls poster="http://media.w3.org/2010/05/bunny/poster.png"> 
+                <source src=http://media.w3.org/2010/05/bunny/movie.mp4	 type=video/mp4>
+        </video>
+        <button id="play">Play</button>
+        <button id="mute">Mute</button>
+        <button id="fwd">forward 1sec</button>
+        <button id="back">back 1sec</button>
+
+        <script>
+            $(document).ready(function () {
+                var video = $('video')[0];
+
+                $('#play').on('click', function(){
+                    if (video.paused) {
+                        video.play();
+                        $(this).text('Pause');
+                    } else {
+                        video.pause();
+                        $(this).text('Play');
+                    }
+                });
+
+                $('#mute').on('click', function(){
+                    if (video.muted) {
+                        video.muted = false;
+                        $(this).text('Mute');
+                    } else {
+                        video.muted = true;
+                        $(this).text('Unmute');
+                    }
+                });
+
+                $('#fwd').on('click', function(){
+                    video.currentTime += 1;
+                });
+
+                $('#back').on('click', function(){
+                    video.currentTime -= 1;
+                });
+
+                video.onended = function(){
+                    alert('ended');
+                }
+            });
+        </script>
+               
+</body>
+</html>

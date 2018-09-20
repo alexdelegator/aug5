@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        function checkValid(e) {
+            if (e.target.value === '') {
+                event.target.setCustomValidity('Required ');
+            } else {
+                event.target.setCustomValidity('');
+            }
+            return true;
+        }
+
+        function checkValidAge(e) {
+            if (parseInt(e.target.value) < 18  || parseInt(e.target.value) > 99) {
+                event.target.setCustomValidity('Range Error ');
+            } else {
+                event.target.setCustomValidity('');
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    A good article is https://www.html5rocks.com/en/tutorials/forms/constraintvalidation/
+    <form action="forms.html" method="post" id="frm">
+    <input type="text" required onchange="checkValid(event)" />
+    <input type="number" min="18" max="99" step="5" required  onchange="checkValidAge(event)"
+     />
+    <input type="range" min="0" max="200" value="20"/>
+    <input type="week" min="0" max="200" value="20"/>
+    <label for="inpChocType">Students:</label>
+    <input type="text" id="zaza" list="chocType">  
+    <datalist id="chocType">
+        <option value="Assaf" />
+        <option value="Aviv" />
+        <option value="Din" />
+        <option value="Rotem" />
+        <option value="Or" />
+        <option value="Adi" />
+    </datalist>
+    <input type="submit">
+</form>
+</body>
+</html>

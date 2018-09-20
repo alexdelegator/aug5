@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <style>
+        .ball {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: green;
+            position: fixed;
+            top: 200px;
+            left: 5px;
+        }
+
+        .wall {
+            width: 5px;
+            height: 200px;
+            top: 100px;
+            left: 920px;
+            position: fixed;
+            background-color: black;
+
+        }
+    </style>
+    <script>
+        var isMoving = false;
+
+        $(document).ready(function(){
+            var topScore = localStorage.getItem('topScore');
+            if (topScore) {
+                $('#top').html(topScore);
+                topScore = parseInt(topScore);
+            }
+            $("#re").on('click', function(){
+                window.location.reload();
+            });
+            $("#tog").on('click', function(){
+                if (isMoving) {
+                    $('.ball').stop();
+                    var left = $('.ball').position().left;
+                    var howFarFromWall = 905 - left;
+                    if (!topScore || howFarFromWall < topScore) {
+                        topScore = howFarFromWall;
+                        $('#top').html(topScore);
+                        localStorage.setItem('topScore', topScore);
+                    }
+                } else {
+                    $('.ball').animate({'left': '906px'}, 2000, 'linear', function(){
+                        $("#tog").attr('disabled', 'true');
+                        setTimeout(function(){                            
+                            alert('You failed!');
+                            window.location.reload();
+                        }, 250);
+                        
+                    });
+                }
+                isMoving = !isMoving;
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="tog">toggle</button>
+    <button id="re">reload</button>
+    <h1>Top score: <span id="top"></span></h1>
+    <div class="ball"></div>
+
+    <div class="wall"></div>
+    
+</body>
+</html>

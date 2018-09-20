@@ -1,0 +1,10 @@
+For HW:
+1) Create a game - Closest to the wall :
+a) (מי הכי קרוב לקיר). Create a "wall" in the right side of the screen, and add a circle in the left side of it.  
+b) Add a button: when clicking it - it start moving the circle towards the wall.
+c) When the circle is in move - another click on the button stops it.
+d) Your goal is to stop the circle as close as you can to the wall, but if you touch it - you fail.
+e) Keep the best score in the local storage and present it also in the ui.
+
+2) Create a plugin that runs on all  link elements (<a>) with href attribute - and create s a DIV element above it with black background and white text with the content of its href attribute. For example - for this element <a href="http://www.nba.com">ZAZA</a>  -> it will create a div above that looks like this: http://www.nba.com
+(But please add some padding so it will look nice).
